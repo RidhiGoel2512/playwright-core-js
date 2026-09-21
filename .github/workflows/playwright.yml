@@ -38,6 +38,7 @@ jobs:
       - name: Run Playwright tests on Azure
         env:
           PLAYWRIGHT_SERVICE_URL: ${{ secrets.PLAYWRIGHT_SERVICE_URL }}
+          BASE_URL: ${{ secrets.BASE_URL }}
         run: |
           npx playwright test \
             -c playwright.service.config.js \
