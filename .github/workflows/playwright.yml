@@ -3,9 +3,41 @@ name: Playwright Tests on Azure
 on:
   push:
     branches: [main]
+
   pull_request:
     branches: [main]
+
   workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Select environment'
+        required: true
+        default: 'qa'
+        type: choice
+        options:
+          - qa
+          - uat
+
+      browser:
+        description: 'Select browser'
+        required: true
+        default: 'chromium'
+        type: choice
+        options:
+          - chromium
+          - firefox
+          - webkit
+
+      tag:
+        description: 'Select test scope'
+        required: true
+        default: '@smoke'
+        type: choice
+        options:
+          - '@smoke'
+          - '@sanity'
+          - '@regression'
+          - 'all'
 
 permissions:
   id-token: write
@@ -39,10 +71,20 @@ jobs:
         env:
           PLAYWRIGHT_SERVICE_URL: ${{ secrets.PLAYWRIGHT_SERVICE_URL }}
           BASE_URL: ${{ secrets.BASE_URL }}
+          TEST_ENV: ${{ inputs.environment }}
         run: |
-          npx playwright test \
-            -c playwright.service.config.js \
-            --workers=5
+          if [ "${{ inputs.tag }}" = "all" ]; then
+            npx playwright test \
+              -c playwright.service.config.js \
+              --project=${{ inputs.browser }} \
+              --workers=5
+          else
+            npx playwright test \
+              -c playwright.service.config.js \
+              --project=${{ inputs.browser }} \
+              --grep="${{ inputs.tag }}" \
+              --workers=5
+          fi
 
       - name: Upload Playwright report
         if: always()

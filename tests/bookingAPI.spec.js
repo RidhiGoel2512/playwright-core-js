@@ -1,7 +1,7 @@
 const { test, expect } = require('../fixtures/test');
 const { APIClient } = require('../api/APIClient');
 
-test('create booking API', async ({ request }) => {
+test('create booking API @smoke', async ({ request }) => {
 
     const api = new APIClient(request);
 
