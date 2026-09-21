@@ -1,0 +1,22 @@
+{
+  "name": "playwright-core",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@azure/identity": "^4.13.3",
+    "@azure/playwright": "^1.1.6",
+    "@playwright/test": "^1.63.0",
+    "@types/node": "^22.20.3",
+    "allure-playwright": "^3.12.2"
+  },
+  "dependencies": {
+    "config": "^5.0.1",
+    "dotenv": "^17.4.2"
+  }
+}

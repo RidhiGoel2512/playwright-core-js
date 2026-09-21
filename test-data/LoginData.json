@@ -1,0 +1,19 @@
+{
+    "validUsers":
+    {
+        "email":"ridhigoel2512@gmail.com",
+        "password":"P@ssword1234"
+    },
+    "invalidUsers":
+    [
+        {
+            "email":"ridhigoel@gmail.com",
+            "password":"Ridhi@123"
+        },
+        {
+            "email":"test@gmail.com",
+            "password":"Ridhi@123"
+        
+        }
+    ]
+}
